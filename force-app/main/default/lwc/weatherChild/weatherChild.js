@@ -15,11 +15,36 @@ export default class WeatherChild extends LightningElement {
 
     @api weatherDataFromSubParent;
 
-    dataElement = null;
+     dataElement = null;
+
+    constructor(){
+        super();
+        console.log('C. weather child constructor');
+    }
     connectedCallback(){
-        this.processSubparentData();
+            console.log('5. weather child connectedCallback');   
     }
 
+    renderedCallback(){
+        console.log('6. weather child renderedCallback');
+        //this.processSubparentData();
+    }
+
+    @api getDataFromSubParent(dt){
+        console.log('--getDataFromSubParent--');
+        console.log(dt);
+        this.dataElement = new ChildClass(
+            dt.timestamp_utc ,
+            dt.snow ,
+            dt.temp ,
+            dt.timestamp_local,
+            dt.ts,
+            dt.precip
+        );
+
+
+
+    }
     processSubparentData(){
         try{
             this.dataElement = this.weatherDataFromSubParent; // new ChildClass(tsu,sn,te,tsl,t,pr);
