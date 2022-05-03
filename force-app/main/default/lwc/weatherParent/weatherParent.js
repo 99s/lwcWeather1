@@ -5,23 +5,21 @@ import apiCaller3 from '@salesforce/apex/WeatherController.apiCaller3';
 
 export default class WeatherParent extends LightningElement {
 
-    weatherResult = 'testResult';
-    weatherError = '';
+    weatherData = 'no data';
+    weatherError = 'noError';
 
     connectedCallback(){
        
-                    this.weatherApiCaller();
+        this.weatherApiCaller();
        
     }
-
-
 
     weatherApiCaller(){
         console.log('weatherApiCaller----');
         try{
 
             apiCaller({apiInput:'apiInput'}).then(result=>{
-                this.weatherResult = result;
+                this.weatherData = result;
                 console.log(result);
                 console.log(JSON.stringify(result));
             }).catch(error=>{

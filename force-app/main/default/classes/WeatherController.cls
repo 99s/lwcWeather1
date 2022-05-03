@@ -18,19 +18,20 @@ public with sharing class WeatherController {
         String ret;
         apiKey = getApiKey();
         baseApi = 'https://api.weatherbit.io/';
+        String exampleReq = baseApi+'v2.0/current?lat=35.7796&lon=-78.6382&key='+apiKey+'&include=minutely';
         try{
-            String exampleReq = baseApi+'v2.0/current?lat=35.7796&lon=-78.6382&key='+apiKey+'&include=minutely';
-            ret+=exampleReq;
+           
+
             HttpRequest req = new HttpRequest();
             req.setEndpoint(exampleReq);
             req.setMethod('GET');
             Http http = new Http();
             HTTPResponse res = http.send(req);
-            ret += res.getBody();
+            ret = res.getBody();
             System.debug(ret);
         }catch (Exception e){
-           
-            ret += e.getMessage();
+            ret+=exampleReq;
+            ret += 'err+'+ e.getMessage();
             System.debug('err:'+ret);
         }
         return ret;
