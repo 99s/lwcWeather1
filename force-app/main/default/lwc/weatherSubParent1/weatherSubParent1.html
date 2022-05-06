@@ -1,4 +1,9 @@
 <template>
+    <template for:each={weatherMinutelyArray} for:item="minutelyItem">
+        <c-weather-child key={minutelyItem.ts} weather-element={minutelyItem}></c-weather-child>
+    </template>
+    
+    <c-weather-child weather-data-from-sub-parent={weatherDataFromParent}></c-weather-child>
     Weather Sub Parent1
     <br/>
     ------------dataTable-DATACOLUMNS------------------
@@ -6,37 +11,39 @@
         <lightning-datatable
             key-field='ts'
             data={weatherDataArray}
-            columns={DATACOLUMNS}>
+            columns={dataColumns}>
         </lightning-datatable>
     </template>
     ------------dataTable-MINUTELYCOLUMNS------------------
     <template if:true={weatherMinutelyArray}>
-        <lightning-datatable
+        <div style="height: 300px;">
+            <lightning-datatable
             key-field='ts'
             data={weatherMinutelyArray}
-            columns={MINUTELYCOLUMNS}>
+            columns={minutelyColumns}>
         </lightning-datatable>
+        </div>
     </template>
     ------------dataTable-TEMP----{}--------------
     <template if:true={testDataArray}>
         <lightning-datatable
             key-field='id'
             data={testDataArray}
-            columns={TESTCOLUMNS}>
+            columns={testColumns}>
         </lightning-datatable>
     </template>
----------testDataFetch---------------
-<template if:true={testFetchData}>
-    <div style="height: 300px;">
-        <lightning-datatable
-                key-field="id"
-                data={data}
-                columns={columns}>
-        </lightning-datatable>
-    </div>    
-</template>
+    ---------testDataFetch---------------
+    <template if:true={testFetchData}>
+        <div style="height: 300px;">
+            <lightning-datatable
+                    key-field="id"
+                    data={testFetchData}
+                    columns={testFetchCol}>
+            </lightning-datatable>
+        </div>    
+    </template>
 
-    <c-weather-child weather-data-from-sub-parent={weatherDataFromParent}></c-weather-child>
+    
 
     <!-- <template for:each={upcomingTasks} for:item="todo">
         <c-todo-item-component key={todo.todoId} todo-id={todo.todoId} todo-name={todo.todoName}></c-todo-item-component>

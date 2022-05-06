@@ -15,14 +15,14 @@ export default class WeatherChild extends LightningElement {
 
     @api weatherDataFromSubParent;
 
-     dataElement = null;
+     @api weatherElement = null;
 
     constructor(){
         super();
         console.log('C. weather child constructor');
     }
     connectedCallback(){
-            console.log('5. weather child connectedCallback');   
+        console.log('5. weather child connectedCallback');   
     }
 
     renderedCallback(){
@@ -31,8 +31,26 @@ export default class WeatherChild extends LightningElement {
     }
 
     @api getDataFromSubParent(dt){
-        return;
+    
         console.log('--getDataFromSubParent--');
+
+        console.log(dt);
+        this.weatherElement = new ChildClass(
+            dt.timestamp_utc ,
+            dt.snow ,
+            dt.temp ,
+            dt.timestamp_local,
+            dt.ts,
+            dt.precip
+        );
+
+
+
+    }
+    getDataFromLwc(dt){
+    
+        console.log('--getDataFromSubParent--');
+
         console.log(dt);
         this.dataElement = new ChildClass(
             dt.timestamp_utc ,

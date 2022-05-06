@@ -1,3 +1,18 @@
 <template>
     <p>weather child</p>
+    <template if:true={weatherElement}>
+
+        <lightning-card  title="@aiiiii">
+            <lightning-button label="New" slot="actions"></lightning-button>
+            <p class="slds-p-horizontal_small">{weatherElement.timestamp_utc}</p>
+            <p class="slds-p-horizontal_small">{weatherElement.snow}</p>
+            <p class="slds-p-horizontal_small">{weatherElement.temp}</p>
+            <p class="slds-p-horizontal_small">{weatherElement.timestamp_local}</p>
+            <p class="slds-p-horizontal_small">{weatherElement.ts}</p>
+            <p class="slds-p-horizontal_small">{weatherElement.precip}</p>
+            <p slot="footer">###(-.-)###</p>
+        </lightning-card>
+    </template>
+
+
 </template>

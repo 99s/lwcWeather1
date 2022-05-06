@@ -80,7 +80,7 @@ export default class WeatherSubParent1 extends LightningElement {
 async testFetchDataFunc(){
     try{
         this.testFetchData = await testDataFetch({ amountOfRecords: 100 });
-        console.log('~~~~~~~~~~~~~~~~~~');
+        console.log('~~~~~~~~');
         console.log(this.testFetchData);
         
         }catch(ex){
@@ -158,7 +158,7 @@ async testFetchDataFunc(){
                
                 this.processMinutelydata(dta.minutely);
             }
-            this.template.querySelector('c-weather-child').getDataFromSubParent(dt);
+            
         }catch(e){
             console.log('--getDataFromParent--Error');
             console.log(e);
@@ -185,6 +185,9 @@ async testFetchDataFunc(){
                 console.log('processMinutelydata') ;
                 this.weatherMinutelyArray = dataArray;
                 console.log(this.weatherMinutelyArray) ;
+                // this.weatherMinutelyArray.forEach(element => {
+                //     this.template.querySelector('c-weather-child').getDataFromSubParent(element);
+                // });
             }
         }catch(e){
             console.log('error processMinutelydata') ;
