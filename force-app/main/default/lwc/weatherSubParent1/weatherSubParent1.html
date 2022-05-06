@@ -1,12 +1,20 @@
 <template>
     Weather Sub Parent1
-
+    ------------dataTable-DATACOLUMNS------------------
     <template if:true={weatherDataArray}>
-<lightning-datatable>
-    my-field=''
-    data={weatherDataArray},
-    columns={columns}
-</lightning-datatable>
+        <lightning-datatable>
+            keyField="ts",
+            data={weatherDataArray},
+            columns={DATACOLUMNS}
+        </lightning-datatable>
+    </template>
+    ------------dataTable-MINUTELYCOLUMNS------------------
+    <template if:true={weatherMinutelyArray}>
+        <lightning-datatable>
+            keyField="ts",
+            data={weatherMinutelyArray},
+            columns={MINUTELYCOLUMNS}
+        </lightning-datatable>
     </template>
     <c-weather-child weather-data-from-sub-parent={weatherDataFromParent}></c-weather-child>
 

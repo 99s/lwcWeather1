@@ -83,13 +83,16 @@ export default class WeatherSubParent1 extends LightningElement {
 
     @api getDataFromParent(dt){
         try{
+           let dta =JSON.parse(dt);
             console.log('--getDataFromParent--');
-            console.log(dt);
-            if(dt.data != null && dt.data.length > 0){
-                this.processWeatherdata(dt.data);
+       
+            if(dta.data != null && dta.data.length > 0){
+                
+                this.processWeatherdata(dta.data);
             }
-            if(dt.minutely != null && dt.minutely.length > 0){
-                this.processMinutelydata(dt.minutely);
+            if(dta.minutely != null && dta.minutely.length > 0){
+               
+                this.processMinutelydata(dta.minutely);
             }
             this.template.querySelector('c-weather-child').getDataFromSubParent(dt);
         }catch(e){
@@ -102,19 +105,26 @@ export default class WeatherSubParent1 extends LightningElement {
     processWeatherdata(dataArray){
         try{
             if(dataArray != null && dataArray.length > 0){
+               console.log('processWeatherdata') ;
                 this.weatherDataArray = dataArray;
+                console.log(this.weatherDataArray) ;
+                
             }
         }catch(e){
-
+            console.log('error processWeatherdata') ;
+            console.log(e) ;
         }
     }
     processMinutelydata(dataArray){
         try{
             if(dataArray != null && dataArray.length > 0){
+                console.log('processMinutelydata') ;
                 this.weatherMinutelyArray = dataArray;
+                console.log(this.weatherMinutelyArray) ;
             }
         }catch(e){
-
+            console.log('error processMinutelydata') ;
+            console.log(e) ;
         }
     }
 

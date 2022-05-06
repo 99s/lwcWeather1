@@ -31,6 +31,7 @@ export default class WeatherChild extends LightningElement {
     }
 
     @api getDataFromSubParent(dt){
+        return;
         console.log('--getDataFromSubParent--');
         console.log(dt);
         this.dataElement = new ChildClass(
