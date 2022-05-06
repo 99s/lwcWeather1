@@ -1,5 +1,13 @@
 <template>
     Weather Sub Parent1
+
+    <template if:true={weatherDataArray}>
+<lightning-datatable>
+    my-field=''
+    data={weatherDataArray},
+    columns={columns}
+</lightning-datatable>
+    </template>
     <c-weather-child weather-data-from-sub-parent={weatherDataFromParent}></c-weather-child>
 
     <!-- <template for:each={upcomingTasks} for:item="todo">
