@@ -1,4 +1,5 @@
 import { api, LightningElement } from 'lwc';
+import testDataFetch from './testDataFetch';
 const DATACOLUMNS = [
     {label: 'rh', fieldName:'rh'},
     {label: 'pod', fieldName:'pod'},
@@ -45,17 +46,80 @@ const MINUTELYCOLUMNS = [
     {label: 'ts', fieldName:'ts'},
     {label: 'precip', fieldName:'precip'}
 ];
+
+const TESTCOLUMNS = [
+    {label: 'Color', fieldName:'color'},
+    {label: 'Name', fieldName:'name'},
+    {label: 'Number', fieldName:'number'}
+];
+const TESTURLDATACOLUMNS = [
+    { label: 'Label', fieldName: 'name' },
+    { label: 'Website', fieldName: 'website', type: 'url' },
+    { label: 'Phone', fieldName: 'phone', type: 'phone' },
+    { label: 'Balance', fieldName: 'amount', type: 'currency' },
+    { label: 'CloseAt', fieldName: 'closeAt', type: 'date' },
+];
 export default class WeatherSubParent1 extends LightningElement {
     @api weatherDataFromParent;
 
     weatherDataArray;
-    weatherMinutelyArray; 
+    weatherMinutelyArray;
+    testDataArray = [];
+    testFetchData = [];
+
+    dataColumns = DATACOLUMNS;
+    testColumns = TESTCOLUMNS;
+    minutelyColumns = MINUTELYCOLUMNS;
+    testFetchCol = TESTURLDATACOLUMNS;
+
+    
     constructor(){
         super();
         console.log('B. weather sub-parent constructor');
     }
+async testFetchDataFunc(){
+    try{
+        this.testFetchData = await testDataFetch({ amountOfRecords: 100 });
+        console.log('~~~~~~~~~~~~~~~~~~');
+        console.log(this.testFetchData);
+        
+        }catch(ex){
+            console.log('testFetchDataFunc--');
+            console.log(ex);
+        }
+}
+     testDataArrayFunc(){
+        this.testDataArray.push(
+            {
+                'id':'1',
+                'color':'red',
+                'name':'redu',
+                'number':'One'
+            }
+        );
+        this.testDataArray.push(
+            {
+                'id':'2',
+                'color':'blue',
+                'name':'bulu',
+                'number':'Two'
+            }
+        );
+        this.testDataArray.push(
+            {
+                'id':'3',
+                'color':'green',
+                'name':'girgiti',
+                'number':'Three'
+            }
+        );
+         console.log(this.testDataArray);
+     }
+
     connectedCallback(){
         console.log('3. weather sub parent connectedCallback');
+        this.testDataArrayFunc();
+        this.testFetchDataFunc();
     }
     renderedCallback(){
         console.log('4. weather sub parent renderedCallback');

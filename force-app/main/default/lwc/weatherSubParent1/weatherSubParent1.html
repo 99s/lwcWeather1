@@ -1,21 +1,41 @@
 <template>
     Weather Sub Parent1
+    <br/>
     ------------dataTable-DATACOLUMNS------------------
     <template if:true={weatherDataArray}>
-        <lightning-datatable>
-            keyField="ts",
-            data={weatherDataArray},
-            columns={DATACOLUMNS}
+        <lightning-datatable
+            key-field='ts'
+            data={weatherDataArray}
+            columns={DATACOLUMNS}>
         </lightning-datatable>
     </template>
     ------------dataTable-MINUTELYCOLUMNS------------------
     <template if:true={weatherMinutelyArray}>
-        <lightning-datatable>
-            keyField="ts",
-            data={weatherMinutelyArray},
-            columns={MINUTELYCOLUMNS}
+        <lightning-datatable
+            key-field='ts'
+            data={weatherMinutelyArray}
+            columns={MINUTELYCOLUMNS}>
         </lightning-datatable>
     </template>
+    ------------dataTable-TEMP----{}--------------
+    <template if:true={testDataArray}>
+        <lightning-datatable
+            key-field='id'
+            data={testDataArray}
+            columns={TESTCOLUMNS}>
+        </lightning-datatable>
+    </template>
+---------testDataFetch---------------
+<template if:true={testFetchData}>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={columns}>
+        </lightning-datatable>
+    </div>    
+</template>
+
     <c-weather-child weather-data-from-sub-parent={weatherDataFromParent}></c-weather-child>
 
     <!-- <template for:each={upcomingTasks} for:item="todo">
